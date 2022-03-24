@@ -43,6 +43,7 @@ const schemas = require("./models/aricleSchema");
     });
 }
 
+
 app.post("/all-articles", function (req, res) {
   const articles = new schemas(req.body);
 
@@ -61,7 +62,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/all-articles", (req, res) => {
-  res.render("index");
+ 
+  schemas.find().then(function(result){
+    res.render("index",{arrayof:result});
+  }).catch(function(err){
+    console.log(err);
+  })
 });
 
 app.get("/add-new-article", (req, res) => {

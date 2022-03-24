@@ -16,6 +16,15 @@
     <textarea name="body"></textarea>
     <button type="submit">submit</button>
 </form>
+<br><br><br><br><br><br><br>
+
+<% arrayof.forEach(item => {%>
+    <article>
+        <h1><%= item.title%></h1>
+        <h3><%= item.summary %> </h3>
+        <p><%= item.body %> </p>
+    </article>
+<% }); %>
     
 </body>
 </html>
