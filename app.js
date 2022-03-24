@@ -7,7 +7,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 // for auto refresh
-const path = require("path");
+{const path = require("path");
 const livereload = require("livereload");
 const liveReloadServer = livereload.createServer();
 liveReloadServer.watch(path.join(__dirname, "public"));
@@ -20,13 +20,13 @@ liveReloadServer.server.once("connection", () => {
     liveReloadServer.refresh("/");
   }, 100);
 });
-
+}
 // mongoose
-const mongoose = require("mongoose");
+{const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    "mongodb+srv://alihassan:c4a@cluster0.ofav6.mongodb.net/all-data?retryWrites=true&w=majority"
+    "mongodb+srv://aymanezahir2:zahirhub2@cluster0.qpl87.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
   )
   .then((result) => {
     app.listen(port, () => {
@@ -39,7 +39,7 @@ mongoose
   });
 
 
-
+}
 
 
 
@@ -62,6 +62,9 @@ app.get("/all-articles", (req, res) => {
 app.get("/add-new-article", (req, res) => {
   res.render("add-new-article");
 });
+
+
+
 
 //  404
 app.use((req, res) => {
