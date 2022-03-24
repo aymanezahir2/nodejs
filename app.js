@@ -1,39 +1,69 @@
-const express = require('express');
+//  to controll ur website
+
+const express = require("express");
 const app = express();
-const port = 3000;
-app.set('view engine', 'ejs');
+const port = 5000;
+app.set("view engine", "ejs");
+app.use(express.static("public"));
 
-app.get('/',function(req,res){
-    res.send("hello world")
-});
-
-
-app.listen(port , function(){
-    console.log(`example app listening at http://localhost:${port}`);
-})
-
-
-
-
-
-
-
-
-
-
-
- 
+// for auto refresh
 const path = require("path");
 const livereload = require("livereload");
 const liveReloadServer = livereload.createServer();
-liveReloadServer.watch(path.join(__dirname, 'public'));
- 
- 
+liveReloadServer.watch(path.join(__dirname, "public"));
+
 const connectLivereload = require("connect-livereload");
 app.use(connectLivereload());
- 
+
 liveReloadServer.server.once("connection", () => {
   setTimeout(() => {
     liveReloadServer.refresh("/");
   }, 100);
-}); 
+});
+
+// mongoose
+const mongoose = require("mongoose");
+
+mongoose
+  .connect(
+    "mongodb+srv://alihassan:c4a@cluster0.ofav6.mongodb.net/all-data?retryWrites=true&w=majority"
+  )
+  .then((result) => {
+    app.listen(port, () => {
+      console.log(`Example app listening at http://localhost:${port}`);
+    });
+  })
+
+  .catch((err) => {
+    console.log(err);
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+app.get("/", (req, res) => {
+  res.redirect("/all-articles");
+});
+
+app.get("/all-articles", (req, res) => {
+  res.render("index");
+});
+
+app.get("/add-new-article", (req, res) => {
+  res.render("add-new-article");
+});
+
+//  404
+app.use((req, res) => {
+  res.status(404).send("Sorry can't find that!");
+});
