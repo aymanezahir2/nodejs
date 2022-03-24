@@ -1,30 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<form action="/all-articles" method="post">
-    <label for="body">title</label>
-    <input type="text" name="title">
 
-    <label for="body"></label>
-    <input type="text" name="summary">
-    <textarea name="body"></textarea>
-    <button type="submit">submit</button>
-</form>
-<br><br><br><br><br><br><br>
 
-<% arrayof.forEach(item => {%>
-    <article>
-        <h1><%= item.title%></h1>
-        <h3><%= item.summary %> </h3>
-        <p><%= item.body %> </p>
-    </article>
-<% }); %>
-    
+<html lang="ar">
+
+<%- include('./partials/head') %> 
+
+<body id="body">
+    <header class="myheader">
+        <h1>Courses4Arab</h1>
+
+        <nav>
+            <ul class="parent">
+                <li>
+                    <a href="https://courses4arab.com/#available-courses">
+                        AaaLL Courses
+                    </a>
+                </li>
+                <li ><a href="/add-new-article">  
+                    Add new article </a></li>
+                <li id="dark" class="mode">change mode</li>
+                <li><a href=""> Support Us </a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+
+
+
+    <main id="main">
+        <section>
+            <h1>
+                Trending Articles &#128293;
+            </h1>
+
+            <div class="parent-of-articles">
+                <% arrayof.forEach(function(item){%> 
+                <article>
+                    <h2>
+                        <%= item.title %> 
+                    </h2>
+
+                    <p>
+                       <%= item.summary %>
+
+                        <a class="btn" href="">show more</a>
+                    </p>
+  
+                </article>
+                <% }); %> 
+
+            </div>
+
+
+        </section>
+
+
+
+    </main>
+
+    <%- include('./partials/footer') %> 
+
+
+
+
 </body>
+
 </html>

@@ -65,6 +65,7 @@ app.get("/all-articles", (req, res) => {
  
   schemas.find().then(function(result){
     res.render("index",{arrayof:result});
+    console.log(result);
   }).catch(function(err){
     console.log(err);
   })
