@@ -6,24 +6,8 @@
 
 
   <body id="body">
-    <header class="myheader">
-      <h1>
-        <a style="all: unset" href="/">Courses4Arab</a>
-      </h1>
+    <%- include("./partials/header") %> 
 
-      <nav>
-        <ul class="parent">
-          <li>
-            <a href="https://courses4arab.com/#available-courses">
-              AaaLL Courses
-            </a>
-          </li>
-          <li><a href="/new-article"> Add new article </a></li>
-          <li id="dark" class="mode">change mode</li>
-          <li><a href=""> Support Us </a></li>
-        </ul>
-      </nav>
-    </header>
 
     <main id="main">
       <section>
@@ -31,13 +15,13 @@
 
         <form action="/all-articles" method="post">
           <label for="title">Article title: </label>
-          <input id="title" name="title" type="text" />
+          <input id="title" value="hello world" name="title" type="text" />
 
           <label for="summary">Article summary: </label>
-          <input id="summary" name="summary" type="text" />
+          <input id="summary" value="hello world" name="summary" type="text" />
 
           <label for="body">Article body:</label>
-          <textarea id="body" name="body"></textarea>
+          <textarea id="body" value="hello world" name="body"></textarea>
 
           <button class="create">create</button>
         </form>

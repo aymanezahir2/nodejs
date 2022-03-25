@@ -1,6 +1,7 @@
 //  to controll ur website
 
 const express = require("express");
+const { redirect } = require("express/lib/response");
 const app = express();
 const port = 5000;
 app.set("view engine", "ejs");
@@ -65,7 +66,6 @@ app.get("/all-articles", (req, res) => {
  
   schemas.find().then(function(result){
     res.render("index",{arrayof:result});
-    console.log(result);
   }).catch(function(err){
     console.log(err);
   })
@@ -73,6 +73,26 @@ app.get("/all-articles", (req, res) => {
 
 app.get("/add-new-article", (req, res) => {
   res.render("add-new-article");
+});
+
+app.get("/details/:id",function(req,res){
+  schemas.findById(req.params.id)
+  .then(function(result){
+    res.render("details.ejs",{g:result})
+
+
+  }).catch(function(err){
+    console.log(err)
+  })
+  
+});
+app.delete("/details/:id",function(req,res){
+  schemas.findByIdAndDelete(req.params.id)
+  .then(function(result){
+   
+  }).catch(function(err){
+    console.log(err);
+  })
 });
 
 //  404
